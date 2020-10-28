@@ -1,0 +1,29 @@
+//Leia 2 valores inteiros (A e B). Após, o programa deve mostrar uma mensagem "Sao Multiplos" ou "Nao sao
+//Multiplos", indicando se os valores lidos são múltiplos entre si. Atenção: os números devem poder ser digitados em
+//ordem crescente ou decrescente.
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class EntradaDeDados {
+public static void main(String[] args) {
+
+Locale.setDefault(Locale.US);
+Scanner sc = new Scanner(System.in);
+
+System.out.println("Digite a hora que o jogo começou, e a hora que o jogo terminou");
+System.out.println("Para se realizar a contagem das horas de jogo!");
+int valor1 = sc.nextInt();
+int valor2 = sc.nextInt();
+
+if (valor1 > valor2) {
+int horas = ((valor1 - 24)*-1) + valor2;
+System.out.printf("A duracao do jogo foi de %d horas", horas);}
+else {
+int horas = (valor1 - valor2) * -1;
+System.out.printf("A duracao do jogo foi de %d horas", horas);}
+
+sc.close();
+
+}
+}
