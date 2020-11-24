@@ -1,0 +1,49 @@
+package application;
+
+import java.util.Locale;
+import java.util.Scanner;
+import entities.Rectangle;
+
+public class entradaDeDados {
+
+	public static void main(String[] args) {
+	
+		Scanner sc = new Scanner(System.in);
+		Locale.setDefault(Locale.US);
+		Rectangle rect = new Rectangle();
+		
+		System.out.println("Enter rectangle width and height: ");
+        rect.height = sc.nextDouble();
+        rect.width = sc.nextDouble();
+        
+        System.out.printf("Area : %.2f",rect.area());
+        System.out.println();
+        System.out.printf("Perimenter : %.2f", rect.perimeter());
+        System.out.println();
+        System.out.printf("Diagonal : %.2f", rect.diagonal());
+        
+		sc.close();
+	}
+}
+
+----------------------------------------------------------------------
+
+package entities;
+
+public class Rectangle {
+
+		public double width;
+		public double height;
+		
+		public double area() {
+			return (width * height);
+		}
+		
+		public double perimeter() {
+			return 2 * (width + height);
+		}
+		
+		public double diagonal() {
+			return Math.sqrt(width * width + height * height);
+		}
+	}
