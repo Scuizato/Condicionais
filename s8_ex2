@@ -1,0 +1,52 @@
+package application;
+
+import java.util.Locale;
+import java.util.Scanner;
+import entities.employeer;
+
+public class entradaDeDados {
+
+	public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    Locale.setDefault(Locale.US);
+    employeer emp = new employeer();
+    
+    System.out.println("Employee, salary and tax : ");
+    emp.name = sc.nextLine();
+    emp.grossSalary = sc.nextDouble();
+    emp.tax = sc.nextDouble();
+    
+    System.out.println("Employee : " + emp);
+    System.out.println("Which percentage to increase salary? ");
+    Double percentage = sc.nextDouble();
+    emp.increaseSalary(percentage);
+    
+    System.out.println("Update data: " + emp);
+    
+    sc.close();
+    
+	}
+}
+
+------------------------------------------------------------------------------------
+
+package entities;
+
+public class employeer {
+
+	public String name;
+	public double grossSalary;
+	public double tax;
+	
+	public double netSalary() {
+		return grossSalary - tax;
+	}
+	
+	public void increaseSalary(double percentage) {
+		grossSalary += (grossSalary/100) * percentage;
+	}
+	
+	public String toString() {
+		return name + ", $ " + String.format("%.2f", netSalary());
+	}
+}
