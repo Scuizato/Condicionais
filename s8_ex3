@@ -1,0 +1,67 @@
+package application;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+import entities.notes;
+
+public class entradaDeDados {
+
+	public static void main(String[] args) {
+    Locale.setDefault(Locale.US);
+    Scanner sc = new Scanner(System.in);
+    notes note = new notes();
+    
+    System.out.println("Name : ");
+    note.name = sc.nextLine();
+    System.out.println();
+    System.out.println("First trimester note : ");
+    note.t1 = sc.nextDouble();
+    System.out.println();
+    System.out.println("Second trimester note : ");
+    note.t2 = sc.nextDouble();
+    System.out.println();
+    System.out.println("Third trimester note : ");
+    note.t3 = sc.nextDouble();
+    
+    System.out.printf("FINAL GRADE: %.2f%n", note.finalGrade());
+    
+    if (note.finalGrade()< 60.0) {
+    	System.out.println("FAILED");
+    	System.out.printf("MISSING %.2f POINT%n", note.missingPoints());}
+    else {
+    	System.out.println("PASS");
+    }
+
+    sc.close();
+    
+	}
+
+}
+
+------------------------------------------------------------------------------
+
+package entities;
+
+public class notes {
+
+	public String name;
+	public double t1;
+	public double t2;
+	public double t3;
+	public double necessaryGrade;
+	
+	public double finalGrade() {	
+		return t1 + t2 + t3;
+	}
+	public double missingPoints() {
+	
+		if (finalGrade() < 60.0) {
+			return 60.0 - finalGrade();
+		}
+		
+		else {
+			return 0.0;
+		}
+	}
+}
