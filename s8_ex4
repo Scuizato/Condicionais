@@ -1,0 +1,37 @@
+package application;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+import util.Calculator;
+
+public class Geral {
+
+	public static void main(String[] args) {
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("What is the dollar price? :");
+		double dollarPrice = sc.nextDouble();
+		System.out.println("How many dollars will be bought? :");
+		double quantity = sc.nextDouble();
+
+		double reais = Calculator.reais(dollarPrice, quantity);
+
+		System.out.println("Amount to be paid in reais = " + reais);
+
+		sc.close();
+	}
+
+}
+
+-----------------------------------------------------------------------------------------------------------
+
+package util;
+
+public class Calculator {
+
+	public static double reais(double dollarPrice, double quantity) {
+		return (dollarPrice*1.06)  * quantity;
+	}
+}
