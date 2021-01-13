@@ -1,0 +1,103 @@
+package application;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+import util.Secundario;
+
+public class Principal {
+
+	public static void main(String[] args) {
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		Secundario secundario;
+		
+		System.out.println("Digite o número da conta: ");
+		int numberAccount = sc.nextInt();
+		System.out.println("Digite o nome do titular: ");
+		sc.nextLine();
+		String nameAccount = sc.nextLine();
+		System.out.println("Deseja fazer um depósito inicial? (y/n): ");
+		char answer = sc.next().charAt(0);
+			
+		if (answer == 'y') {
+			System.out.println("Quanto deseja depositar?: ");
+			double initialDeposit = sc.nextDouble();
+			secundario = new Secundario(numberAccount, nameAccount, initialDeposit);	
+		}
+		
+		else {
+			secundario = new Secundario(numberAccount, nameAccount);
+		}
+		System.out.println(secundario);
+		
+		System.out.println("Quanto deseja depositar?: ");
+		double changeBalance = sc.nextDouble();
+		secundario.addBalance(changeBalance);
+		
+		System.out.println(secundario);
+		
+		System.out.println("Quanto deseja sacar?: ");
+		changeBalance = sc.nextDouble();
+		secundario.removeBalance(changeBalance);
+		
+		System.out.println(secundario);
+		
+		sc.close();
+	}
+}
+
+____________________________________________________________________________________________________________________________
+
+package util;
+
+public class Secundario {
+
+	private int numberAccount;
+	private String nameAccount;
+	private double balanceAccount;
+
+	public Secundario(int numberAccount, String nameAccount) {
+       this.numberAccount = numberAccount;
+       this.nameAccount = nameAccount;
+	}
+	
+	public Secundario(int numberAccount, String nameAccount, double initialDeposit) {
+		this.numberAccount = numberAccount;
+		this.nameAccount = nameAccount;
+		balanceAccount += initialDeposit;
+	}
+	
+	public int getNumberAccount() {
+		return numberAccount;
+	}
+	
+	public String getNameAccount() {
+		return nameAccount;
+	}
+	
+	public void setNameAccount(String nameAccount) {
+		this.nameAccount = nameAccount;
+	}
+	
+	public double getBalanceAccount() {
+		return balanceAccount;
+	}
+	
+	public void addBalance(double changeBalance) {
+		balanceAccount += changeBalance;
+	}
+	
+	public void removeBalance(double changeBalance) {
+		balanceAccount -= changeBalance + 5;
+	}
+	
+	public String toString() {
+		return "Account: "
+				+ getNumberAccount()
+				+ ", holder: "
+				+ getNameAccount()
+				+ ", balance: R$ "
+				+ String.format("%.2f",getBalanceAccount());
+	}
+}
